@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+</head>
+<body>
+
+    <?php if (isset($_REQUEST['go'])):?>
+    <?php else:?>
+        <form action="<?=$_SERVER['REQUEST_URI']?>" method="POST">
+            <label for="code">
+                Ваш код:
+            </label>
+            <textarea id="code" name="code"></textarea><br/>
+            <label for="params">
+                Параметры:
+            </label>
+            <input type="text" id="params" name="params">
+            <input type="submit" name="go" value="Отослать!"><br>
+        </form>
+    <?php endif?>
+
+</body>
+</html>
