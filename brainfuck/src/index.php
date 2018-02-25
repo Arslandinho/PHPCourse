@@ -1,6 +1,6 @@
-<?php require 'form.html'?>
-
 <?php
+
+require 'form.html';
 
 function interpret($code, $params) {
 
@@ -65,14 +65,19 @@ function interpret($code, $params) {
                     array_push($brackets, $i);
                     $i++;
                 } else {
-                    while ($result[$resultCurrent] != "]") {
+                    while (true) {
+                        if ($result[$resultCurrent] == "]") {
+                            array_pop($brackets);
+                        } else {
+                            array_push($brackets, $i);
+                        }
                         $i++;
                     }
                 }
                 break;
             case ']':
                 if ($result[$resultCurrent] != 0) {
-                    $i = $brackets[count($brackets) - 1];
+                    $i = $brackets[count($brackets) - 1] + 1;
                 } else {
                     array_pop($brackets);
                     $i++;
@@ -85,8 +90,13 @@ function interpret($code, $params) {
     return $endResult;
 }
 
-$code = $_POST['code'];
-$params = $_POST['params'];
+$code = "";
+$params = "";
+
+if (isset($_POST['code']) and isset($_POST['params'])) {
+    $code = $_POST['code'];
+    $params = $_POST['params'];
+}
 
 $params_ascii = [];
 
