@@ -65,13 +65,15 @@ function interpret($code, $params) {
                     array_push($brackets, $i);
                     $i++;
                 } else {
-                    while (count($brackets) > 1) {
+                    while (true) {
                         if ($result[$resultCurrent] == "]") {
                             array_pop($brackets);
                         } elseif ($result[$resultCurrent] == "[") {
                             array_push($brackets, $i);
                         }
                         $i++;
+
+                        if (count($brackets) == 0) break;
                     }
                 }
                 break;
