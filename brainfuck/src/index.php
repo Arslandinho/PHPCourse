@@ -65,10 +65,10 @@ function interpret($code, $params) {
                     array_push($brackets, $i);
                     $i++;
                 } else {
-                    while (true) {
+                    while (count($brackets) > 1) {
                         if ($result[$resultCurrent] == "]") {
                             array_pop($brackets);
-                        } else {
+                        } elseif ($result[$resultCurrent] == "[") {
                             array_push($brackets, $i);
                         }
                         $i++;
@@ -105,5 +105,8 @@ for ($i = 0; $i < strlen($params); $i++) {
 }
 
 echo interpret($code, $params_ascii);
+
+// ++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.
+// ++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.
 
 ?>
