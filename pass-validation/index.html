@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign in</title>
+</head>
+
+<style>
+    body {
+        margin: 10% 0 0 15%;
+    }
+</style>
+
+<body>
+
+    <?php if (isset($_REQUEST['go'])):?>
+    <?php else:?>
+    <form action="<?=$_SERVER['REQUEST_URI']?>" method="POST">
+
+        <h2>Sign in</h2>
+
+        <table>
+            <tr>
+                <td>
+                    <label for="login">
+                        Login:
+                    </label>
+                </td>
+                <td>
+                    <input id="login" type="text">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="pass">
+                        Password:
+                    </label>
+                </td>
+                <td>
+                    <input type="password" id="pass" name="pass">
+                </td>
+            </tr>
+        </table>
+
+        <br>
+
+        <input type="submit" name="go" value="Отправить"><br>
+    </form>
+    <?php endif?>
+
+</body>
+</html>

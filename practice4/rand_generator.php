@@ -36,7 +36,7 @@ function randomGenerator($json, $number) {
             if ($weightToCount <= $randWeight) {
                 $weightToCount += $data[$j]->weight;
 
-                if ($weightToCount > $randWeight) {
+                if ($weightToCount >= $randWeight) {
                     yield $data[$j]->text;
                 }
             }
