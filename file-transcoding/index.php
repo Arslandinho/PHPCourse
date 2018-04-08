@@ -6,8 +6,8 @@
  * Time: 13:43
  */
 
-function get_first_three_symbols($string): string {
-    return substr($string, 0, 3);
+function get_arg($string, $arg_length): string {
+    return substr($string, 0, $arg_length);
 }
 
 function get_ini_params($ini): array {
@@ -78,7 +78,7 @@ function choose_operation($params, $key, $line) {
 function transcode_operation($line, $params) : string {
 
     foreach ($params as $key => $param) {
-        if (get_first_three_symbols($line) == $key) {
+        if (get_arg($line, strlen($key)) == $key) {
             return choose_operation($params, $key, $line);
         }
     }
