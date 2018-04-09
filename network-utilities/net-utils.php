@@ -37,7 +37,7 @@ function check_connection($address, $type) : string {
     }
 }
 
-function ping($address) : string {
+function ping($address)  {
 
     $ip_regex = "#\d{1,3}(\.\d{1,3}){3}#";
     $percent_regex = "#\d{1,3}%#";

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Speedtest</title>
+</head>
+
+<style>
+    body {
+        background-color: #142b4f;
+        margin: 10% 0 0 40%;
+        color: white;
+        font-size: 18px;
+    }
+
+    #btn {
+        cursor: pointer;
+        background-color: #142b4f;
+        color: khaki;
+        border-color: khaki;
+        padding: 7% 5%;
+        text-align: center;
+        display: inline-block;
+        font-size: 20px;
+        margin: 2% 5%;
+        border-radius: 100%;
+    }
+
+    #resource {
+        background-color: #4a699b;
+        color: white;
+        font-size: 16px;
+    }
+</style>
+
+<body>
+
+<?php if (isset($_REQUEST['go'])):?>
+<?php else:?>
+<form action="<?=$_SERVER['REQUEST_URI']?>" method="POST">
+
+    <label>
+        <h4>Укажите ресурс:</h4>
+        <textarea name="resource" id="resource" cols="20" rows="2"></textarea>
+    </label>
+
+    <p>
+        <h4>Укажите тип запроса:</h4>
+        <label>
+            <input type="radio" name="type" value="ping">
+            Ping
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="type" value="tracert">
+            Tracert
+        </label>
+    </p>
+
+
+    <br>
+
+    <input id="btn" type="submit" name="go" value="Начать"><br>
+</form>
+<?php endif?>
+
+</body>
+</html>
