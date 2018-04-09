@@ -18,7 +18,7 @@ function esc_shell_args_for_address($address) : string {
         }
     }
 
-    return null;
+    return "";
 }
 
 function send_request($address, $type) : string {
@@ -29,7 +29,7 @@ function send_request($address, $type) : string {
     $ip = esc_shell_args_for_address($address);
     $command = "";
 
-    if ($ip == null) {
+    if ($ip == "") {
         return "Неправильный формат ip-адреса. Повторите попытку";
     } else {
         $command .= $type . " " . $ip;
@@ -57,7 +57,6 @@ function send_request($address, $type) : string {
         if ($matches_by_percent) {
             $successful = 100 - intval($matches_by_percent_arr[0]);
             $end_result .= "Процент успешных запросов: " . $successful;
-            return $end_result;
         }
     } elseif ($type == "tracert") {
 
@@ -66,9 +65,7 @@ function send_request($address, $type) : string {
         for ($i = 0; $i < count($matches_by_ip_arr); $i++) {
             $end_result .= "<b>" . $matches_by_ip_arr[$i] . "</b> ";
         }
-
-        return $end_result;
     } else return "Неизвестный тип запроса. Повторите попытку";
 
-    return "Неизвестная ошибка. Повторите попытку.";
+    return $end_result;
 }
