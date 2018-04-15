@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log your strings FOR FREE</title>
+
+    <style>
+        body {
+            background-color: #fcf4c9;
+        }
+
+        #content {
+            position: fixed;
+            top: 6%;
+            left: 35%;
+        }
+
+        #title {
+            text-align: center;
+            font-size: 28px;
+            color: #0d3370;
+            padding-bottom: 5%;
+        }
+
+        #btn {
+            cursor: pointer;
+            background-color: #2f5084;
+            color: #f2f7ff;
+            border-color: #191e38;
+            padding: 4% 7%;
+            text-align: center;
+            display: inline-block;
+            font-size: 18px;
+            margin-left: 35%;
+            margin-top: 5%;
+            border-radius: 10%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<?php if (isset($_REQUEST['go'])):?>
+<?php else:?>
+
+    <div id="content">
+        <form action="<?=$_SERVER['REQUEST_URI']?>" method="POST">
+
+            <p id="title"><b>Enter your text here:</b></p>
+            <label>
+                <textarea name="text" id="text" cols="63" rows="7"></textarea>
+            </label>
+            <br><br>
+
+            <input type="radio" id="file" name="logger-type" value="file" v-model="picked">
+            <label for="file">File logger</label><br><br>
+
+            If you picked "File logger", enter a file name without any extension:
+            <br>
+            <input type="text" placeholder="Enter a name of the file here" name="filename">
+
+            <br><br>
+            <hr>
+
+            <input type="radio" id="browser" name="logger-type" value="browser" v-model="picked">
+            <label for="browser">Browser logger</label><br><br>
+
+            <div>
+                If you picked "Browser logger", choose one of the following parameters:
+                <br>
+                <input type="radio" name="param" value="DT">Date and time
+                <input type="radio" name="param" value="T">Time only
+                <input type="radio" name="param" value="NONE">None
+            </div>
+
+            <br>
+
+            <!--<div v-if="file-checked">-->
+                <!--<input type="text" placeholder="Enter a name of the file here" name="filename">-->
+            <!--</div>-->
+            <!--<div v-else-if="browser-checked">-->
+                <!--<input type="radio" name="param" value="DT">Date and time-->
+                <!--<input type="radio" name="param" value="T">Time only-->
+                <!--<input type="radio" name="param" value="NONE">None-->
+            <!--</div>-->
+            <!--<br>-->
+
+            <input id="btn" type="submit" name="go" value="Log"><br>
+        </form>
+    </div>
+<?php endif?>
+
+<script src=https://cdn.jsdelivr.net/npm/vue></script>
+
+<script>
+    new Vue({
+       data: {
+           "picked": false,
+       }
+    });
+</script>
+
+</body>
+</html>

@@ -23,7 +23,7 @@ function esc_shell_args_for_address($address) : string {
 
 function send_request($address, $type) : string {
 
-    $regex_for_ip_address_format = "#[1-9]?[1-9]?\d(\.[1-9]?[1-9]?\d){3}#";
+    $regex_for_ip_address_format = "#[1-9]?[0-9]?\d(\.[1-9]?[0-9]?\d){3}#";
     $regex_for_percent = "#[1]?[1-9]?\d%#";
 
     $ip = esc_shell_args_for_address($address);
@@ -60,11 +60,16 @@ function send_request($address, $type) : string {
         }
     } elseif ($type == "tracert") {
 
+        $matches = [];
+        preg_match_all($regex_for_ip_address_format, $output, $matches, PREG_SET_ORDER);
+
         $end_result .= "Запросы выполнены на: ";
 
-        for ($i = 0; $i < count($matches_by_ip_arr); $i++) {
-            $end_result .= "<b>" . $matches_by_ip_arr[$i] . "</b> ";
+        for ($i = 0; $i < count($matches); $i++) {
+            $end_result .= "<b>" . $matches[$i][0] . "</b> ";
         }
+
+
     } else return "Неизвестный тип запроса. Повторите попытку";
 
     return $end_result;

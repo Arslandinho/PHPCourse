@@ -33,7 +33,7 @@ function get_ini_params($ini): array {
 
 function choose_operation($params, $key, $line) {
 
-    $line = substr($line, 3);
+    $line = substr($line, strlen($key));
 
     switch ($params[$key]) {
         case "true":
