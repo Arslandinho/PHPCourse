@@ -55,29 +55,33 @@ function print_contains($input) : string {
     else return $out_1 . "не " . $out_2;
 }
 
-if (isset($_POST["text"]) && isset($_POST["logger-type"]) &&
-                                    (isset($_POST["param"]) || isset($_POST["filename"]))) {
+function getLogger($input, $type, $filename=null, $feature=null) : AbstractLogger {
+    if ($type == "file") return new FileLogger($input, $filename);
+    elseif ($type == "browser") return new BrowserLogger($input, $feature);
+}
+
+
+
+if (isset($_POST["text"]) && isset($_POST["logger-type"])) {
     $input = trim($_POST["text"]);
     $logger_type = $_POST["logger-type"];
+    $filename = null;
+    $feature = null;
+
+    if (isset($_POST["param"])) {
+        $feature = $_POST["param"];
+    }
+
+    if (isset($_POST["filename"])) {
+        $filename = $_POST["filename"];
+    }
 
     $input = print_contains($input);
 
-    if ($logger_type == "file") {
-        $filename = $_POST["filename"];
+    $logger = getLogger($input, $logger_type, $filename, $feature);
 
-        if ($filename != null) {
-            $logger = new FileLogger($input, $filename);
-            $logger->print_output();
-
-            echo "Успешно!";
-        } else throw new Error("Укажите название файла");
-    } elseif ($logger_type == "browser") {
-        $feature = $_POST["param"];
-
-        if ($feature != null) {
-            $logger = new BrowserLogger($input, $feature);
-            $logger->print_output();
-        } else throw new Error("Укажите параметр");
+    if ($logger != null) {
+        $logger->print_output();
     } else {
         throw new Error("Ошибка. Неизвестный тип логгера");
     }
