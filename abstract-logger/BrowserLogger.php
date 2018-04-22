@@ -10,15 +10,14 @@ class BrowserLogger extends AbstractLogger {
 
     private $feature;
 
-    public function __construct($input, $feature) {
-        parent::__construct($input);
+    public function __construct($feature) {
         $this->feature = $feature;
     }
 
     public function print_output() {
         $this->add_features();
 
-        echo $this->to_print;
+        echo $this->to_print . "<br>";
     }
 
     private function add_features() {

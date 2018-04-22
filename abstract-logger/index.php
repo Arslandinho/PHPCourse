@@ -55,9 +55,9 @@ function print_contains($input) : string {
     else return $out_1 . "не " . $out_2;
 }
 
-function getLogger($input, $type, $filename=null, $feature=null) : AbstractLogger {
-    if ($type == "file") return new FileLogger($input, $filename);
-    elseif ($type == "browser") return new BrowserLogger($input, $feature);
+function getLogger($type, $filename=null, $feature=null) : AbstractLogger {
+    if ($type == "file") return new FileLogger($filename);
+    elseif ($type == "browser") return new BrowserLogger($feature);
 }
 
 
@@ -78,10 +78,16 @@ if (isset($_POST["text"]) && isset($_POST["logger-type"])) {
 
     $input = print_contains($input);
 
-    $logger = getLogger($input, $logger_type, $filename, $feature);
+    $logger = getLogger($logger_type, $filename, $feature);
 
     if ($logger != null) {
-        $logger->print_output();
+        $logger->addToLog($input);
+
+        if (isset($_POST["add_text"])) {
+            $input = trim($_POST["add_text"]);
+            $input = print_contains($input);
+            $logger->addToLog($input);
+        }
     } else {
         throw new Error("Ошибка. Неизвестный тип логгера");
     }

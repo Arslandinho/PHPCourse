@@ -10,8 +10,7 @@ class FileLogger extends AbstractLogger {
 
     private $file;
 
-    public function __construct($input, $path_to_file) {
-        parent::__construct($input);
+    public function __construct($path_to_file) {
         $this->file = fopen($path_to_file . ".txt", "w");
     }
 
@@ -21,6 +20,6 @@ class FileLogger extends AbstractLogger {
 
     public function print_output() {
 
-        fwrite($this->file, parent::getPrint());
+        fwrite($this->file, $this->to_print  . "\n");
     }
 }

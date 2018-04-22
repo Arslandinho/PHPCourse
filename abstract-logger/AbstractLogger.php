@@ -8,15 +8,12 @@
 
 abstract class AbstractLogger {
 
-    protected $to_print;
-
-    public function __construct($input) {
-        $this->to_print = $input;
-    }
+    protected $to_print = "";
 
     public abstract function print_output();
 
-    public function getPrint() {
-        return $this->to_print;
+    public function addToLog($input) {
+        $this->to_print .= $input;
+        $this->print_output();
     }
 }

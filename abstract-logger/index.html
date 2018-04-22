@@ -42,15 +42,22 @@
 <body>
 
 <?php if (isset($_REQUEST['go'])):?>
+    <div>
+        <form action="<?=$_SERVER['REQUEST_URI']?>" method="POST">
+            <p><b>Enter your text here:</b></p>
+            <textarea name="add_text" id="add_text" cols="63" rows="7"></textarea>
+            <br>
+
+            <input id="add_btn" type="submit" name="go" value="Log"><br>
+        </form>
+    </div>
 <?php else:?>
 
     <div id="content">
         <form action="<?=$_SERVER['REQUEST_URI']?>" method="POST">
 
             <p id="title"><b>Enter your text here:</b></p>
-            <label>
-                <textarea name="text" id="text" cols="63" rows="7"></textarea>
-            </label>
+            <textarea name="text" id="text" cols="63" rows="7"></textarea>
             <br><br>
 
             <input type="radio" id="file" name="logger-type" value="file" v-model="picked">
@@ -69,9 +76,12 @@
             <div>
                 If you picked "Browser logger", choose one of the following parameters:
                 <br>
-                <input type="radio" name="param" value="DT">Date and time
-                <input type="radio" name="param" value="T">Time only
-                <input type="radio" name="param" value="NONE">None
+                <input type="radio" name="param" value="DT" id="DT">
+                <label for="DT">Date and time</label>
+                <input type="radio" name="param" value="T" id="T">
+                <label for="T">Time only</label>
+                <input type="radio" name="param" value="NONE" id="NONE">
+                <label for="NONE">None</label>
             </div>
 
             <br>
