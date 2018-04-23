@@ -1,3 +1,4 @@
 # PHPCourse
 
-These are the tasks of my PHPCourse in Higher School of ITIS, KFU
+KFU Higher School of ITIS
+PHP Course hometasks
