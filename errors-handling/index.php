@@ -14,8 +14,32 @@ $generator = new Generator\ExceptionsGenerator();
 
 try {
     $generator->first_function();
+} catch (\Exceptions\IException $e) {
+    print $e->getMessage();
+} finally {
+    print " on first_function().\n";
+}
+
+try {
     $generator->second_function();
+} catch (\Exceptions\IException $e) {
+    print $e->getMessage();
+} finally {
+    print " on second_function().\n";
+}
+
+try {
     $generator->third_function();
+} catch (\Exceptions\IException $e) {
+    print $e->getMessage();
+} finally {
+    print " on third_function().\n";
+}
+
+try {
     $generator->fourth_function();
 } catch (\Exceptions\IException $e) {
+    print $e->getMessage();
+} finally {
+    print " on fourth_function().\n";
 }

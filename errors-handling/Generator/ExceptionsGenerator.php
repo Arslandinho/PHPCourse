@@ -91,22 +91,22 @@ function getRandomException() : IException {
 
     switch ($random) {
         case 1:
-            return new SimpleException(__CLASS__ . "was thrown");
+            return new SimpleException("SimpleException was thrown");
             break;
         case 2:
-            return new SuperException(__CLASS__ . "was thrown");
+            return new SuperException("SuperException was thrown");
             break;
         case 3:
-            return new SuperDuperException(__CLASS__ . "was thrown");
+            return new SuperDuperException("SuperDuperException was thrown");
             break;
         case 4:
-            return new MegaException(__CLASS__ . "was thrown");
+            return new MegaException("MegaException was thrown");
             break;
         case 5:
-            return new UltraMegaException(__CLASS__ . "was thrown");
+            return new UltraMegaException("UltraMegaException was thrown");
             break;
         default:
-            return new SimpleException(__CLASS__ . "was thrown");
+            return new SimpleException("SimpleException was thrown");
     }
 }
 

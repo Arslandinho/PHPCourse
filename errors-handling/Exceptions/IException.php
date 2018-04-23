@@ -11,9 +11,5 @@ namespace Exceptions;
 
 class IException extends \Exception
 {
-    public function __toString()
-    {
-        return __CLASS__ . parent::__toString();
-    }
 
 }
