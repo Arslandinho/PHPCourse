@@ -18,8 +18,13 @@ use Exceptions\UltraMegaException;
 class ExceptionsGenerator
 {
 
+
     /**
-     * @throws IException
+     * @throws SimpleException
+     * @throws MegaException
+     * @throws SuperException
+     * @throws SuperDuperException
+     * @throws UltraMegaException
      */
     public function first_function() {
         $ex1 =  getRandomException();
@@ -33,7 +38,11 @@ class ExceptionsGenerator
     }
 
     /**
-     * @throws IException
+     * @throws SuperException
+     * @throws MegaException
+     * @throws SimpleException
+     * @throws SuperDuperException
+     * @throws UltraMegaException
      */
     public function second_function() {
         $ex1 =  getRandomException();
@@ -47,7 +56,11 @@ class ExceptionsGenerator
     }
 
     /**
-     * @throws IException
+     * @throws SuperException
+     * @throws MegaException
+     * @throws SimpleException
+     * @throws SuperDuperException
+     * @throws UltraMegaException
      */
     public function third_function() {
         $ex1 =  getRandomException();
@@ -61,7 +74,11 @@ class ExceptionsGenerator
     }
 
     /**
-     * @throws IException
+     * @throws SuperException
+     * @throws MegaException
+     * @throws SimpleException
+     * @throws SuperDuperException
+     * @throws UltraMegaException
      */
     public function fourth_function() {
         $ex1 =  getRandomException();
@@ -80,7 +97,7 @@ class ExceptionsGenerator
     }
 }
 
-function getRandomException() : IException {
+function getRandomException() {
 
     $random = 0;
 

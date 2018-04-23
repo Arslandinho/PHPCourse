@@ -14,7 +14,15 @@ $generator = new Generator\ExceptionsGenerator();
 
 try {
     $generator->first_function();
-} catch (\Exceptions\IException $e) {
+} catch (\Exceptions\UltraMegaException $e) {
+    print $e->getMessage();
+} catch (\Exceptions\MegaException $e) {
+    print $e->getMessage();
+} catch (\Exceptions\SuperDuperException $e) {
+    print $e->getMessage();
+} catch (\Exceptions\SuperException $e) {
+    print $e->getMessage();
+} catch (\Exceptions\SimpleException $e) {
     print $e->getMessage();
 } finally {
     print " on first_function().\n";
@@ -22,7 +30,15 @@ try {
 
 try {
     $generator->second_function();
-} catch (\Exceptions\IException $e) {
+} catch (\Exceptions\UltraMegaException $e) {
+    print $e->getMessage();
+} catch (\Exceptions\MegaException $e) {
+    print $e->getMessage();
+} catch (\Exceptions\SuperDuperException $e) {
+    print $e->getMessage();
+} catch (\Exceptions\SuperException $e) {
+    print $e->getMessage();
+} catch (\Exceptions\SimpleException $e) {
     print $e->getMessage();
 } finally {
     print " on second_function().\n";
@@ -30,7 +46,15 @@ try {
 
 try {
     $generator->third_function();
-} catch (\Exceptions\IException $e) {
+} catch (\Exceptions\UltraMegaException $e) {
+    print $e->getMessage();
+} catch (\Exceptions\MegaException $e) {
+    print $e->getMessage();
+} catch (\Exceptions\SuperDuperException $e) {
+    print $e->getMessage();
+} catch (\Exceptions\SuperException $e) {
+    print $e->getMessage();
+} catch (\Exceptions\SimpleException $e) {
     print $e->getMessage();
 } finally {
     print " on third_function().\n";
@@ -38,7 +62,15 @@ try {
 
 try {
     $generator->fourth_function();
-} catch (\Exceptions\IException $e) {
+} catch (\Exceptions\UltraMegaException $e) {
+    print $e->getMessage();
+} catch (\Exceptions\MegaException $e) {
+    print $e->getMessage();
+} catch (\Exceptions\SuperDuperException $e) {
+    print $e->getMessage();
+} catch (\Exceptions\SuperException $e) {
+    print $e->getMessage();
+} catch (\Exceptions\SimpleException $e) {
     print $e->getMessage();
 } finally {
     print " on fourth_function().\n";
