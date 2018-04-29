@@ -1,0 +1,137 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Arslan
+ * Date: 28.04.2018
+ * Time: 22:19
+ */
+
+class Month extends ArrayIterator
+{
+
+    private $month;
+    private $year;
+    private $day;
+
+    private $months_full = array("January", "February", "March", "April", "May", "June", "July",
+                            "August", "September", "October", "November", "December");
+
+    private $months_short = array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+                                    "Aug", "Sep", "Oct", "Nov", "Dec");
+
+
+    public function __construct($month, $year)
+    {
+        $are_month_and_year = $this->checkIfMonthAndYear($month, $year);
+
+        if ($are_month_and_year) {
+
+            if (is_int($month)) {
+                $this->month = $month;
+            } elseif (is_string($month)) {
+                if (in_array($month, $this->months_full)) {
+                    $this->month = array_search($month, $this->months_full) + 1;
+                } elseif (in_array($month, $this->months_short)) {
+                    $this->month = array_search($month, $this->months_short) + 1;
+                }
+            }
+
+            $this->year = $year;
+        } else {
+            echo "Could not set a date";
+        }
+    }
+
+    public function checkIfMonthAndYear($month, $year) : bool {
+
+        $checker_month = false;
+        $checker_year = false;
+        $date = new DateTime();
+
+        if (in_array($month, $this->months_full) || in_array($month, $this->months_short)) {
+            $month = array_search($month, $this->months_full) + 1;
+        }
+
+        try {
+            $date->setDate($year, $month, random_int(1, date_format($date, "t")));
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+
+        $month_constants = array("m", "F", "M", "n");
+        $year_constants = array("o", "Y", "y");
+
+        foreach ($month_constants as $month_constant) {
+            if (date_format($date, $month_constant) == $month) {
+                $checker_month = true;
+                break;
+            }
+        }
+
+        foreach ($year_constants as $year_constant) {
+            if (date_format($date, $year_constant) == $year) {
+                $checker_year = true;
+                break;
+            }
+        }
+
+        if ($checker_month and $checker_year) {
+            return true;
+        } elseif ($checker_month) {
+            echo "Wrong year format.";
+        } elseif ($checker_year) {
+            echo "Wrong month format.";
+        }
+
+        return false;
+    }
+
+    public function getIterator()
+    {
+        $arrayOfDays = array();
+
+        $date = new DateTime();
+        $i = 1;
+        $date->setDate($this->year, $this->month, 1);
+
+        while ($i < date_format($date, "t")) {
+            array_push($arrayOfDays, $this->formatDate($date));
+
+            $date->setDate($this->year, $this->month, ++$i);
+        }
+
+        return new ArrayIterator($arrayOfDays);
+    }
+
+    public function formatDate(DateTime $date) {
+        $dayOfWeek = $date->format("l");
+
+        if ($dayOfWeek == "Sunday") {
+            $dayOfWeek .= "\n";
+        }
+
+        $eachDayOfWeekAsNumber = $date->format("N");
+        $firstDayOfTheMonth = $date->format("d");
+
+        if ($firstDayOfTheMonth == 1) {
+            if ($eachDayOfWeekAsNumber != 7) {
+                $dayOfWeek = str_repeat(" ", $eachDayOfWeekAsNumber) . $dayOfWeek;
+            }
+        }
+
+        return $dayOfWeek;
+    }
+
+    public function getDay($day) {
+        $date = new DateTime();
+        $date->setDate($this->year, $this->month, $day);
+
+        return $this->formatDate($date);
+    }
+
+    public function __toString()
+    {
+        return $this->day . " " . $this->month . " " . $this->year;
+    }
+
+}
