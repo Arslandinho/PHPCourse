@@ -94,7 +94,7 @@ class Month extends ArrayIterator
         $i = 1;
         $date->setDate($this->year, $this->month, 1);
 
-        while ($i < date_format($date, "t")) {
+        while ($i <= date_format($date, "t") && date_format($date, "m") == $this->month) {
             array_push($arrayOfDays, $this->formatDate($date));
 
             $date->setDate($this->year, $this->month, ++$i);
