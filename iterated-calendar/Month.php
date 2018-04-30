@@ -104,29 +104,27 @@ class Month extends ArrayIterator
     }
 
     public function formatDate(DateTime $date) {
-        $dayOfWeek = $date->format("l");
-
-        if ($dayOfWeek == "Sunday") {
-            $dayOfWeek .= "\n";
-        }
-
-        $eachDayOfWeekAsNumber = $date->format("N");
+        $dayOfWeek = $date->format("N");
         $firstDayOfTheMonth = $date->format("d");
 
         if ($firstDayOfTheMonth == 1) {
-            if ($eachDayOfWeekAsNumber != 7) {
-                $dayOfWeek = str_repeat(" ", $eachDayOfWeekAsNumber) . $dayOfWeek;
+            if ($dayOfWeek != 7) {
+                $firstDayOfTheMonth = str_repeat(" ", $dayOfWeek) . $firstDayOfTheMonth;
             }
         }
 
-        return $dayOfWeek;
+        if ($dayOfWeek == 7) {
+            $firstDayOfTheMonth .= "\n";
+        }
+
+        return $firstDayOfTheMonth;
     }
 
     public function getDay($day) {
         $date = new DateTime();
         $date->setDate($this->year, $this->month, $day);
 
-        return $this->formatDate($date);
+        return date_format($date, "l");
     }
 
     public function __toString()
