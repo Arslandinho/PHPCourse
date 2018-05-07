@@ -109,7 +109,7 @@ class Month extends ArrayIterator
 
         if ($firstDayOfTheMonth == 1) {
             if ($dayOfWeek != 7) {
-                $firstDayOfTheMonth = str_repeat(" ", $dayOfWeek) . $firstDayOfTheMonth;
+                $firstDayOfTheMonth = str_repeat("&nbsp", $dayOfWeek) . $firstDayOfTheMonth;
             }
         }
 
@@ -129,7 +129,7 @@ class Month extends ArrayIterator
 
     public function __toString()
     {
-        return $this->day . " " . $this->month . " " . $this->year;
+        return $this->day . "&nbsp" . $this->month . "&nbsp" . $this->year;
     }
 
 }

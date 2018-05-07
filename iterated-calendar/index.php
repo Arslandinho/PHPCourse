@@ -13,13 +13,17 @@ spl_autoload_register(function ($class_name) {
 
 //Все варианты работают:
 
-$month = new Month("May", 2018);
+$month = new Month("March", 2018);
 //$month = new Month(4, 2018);
 //$month = new Month(04, 2018);
 //$month = new Month("April", 2018);
 
-print $month->getDay(27) . "\n";
+print $month->getDay(29) . "<br><br>";
+
+$print = "";
 
 foreach ($month->getIterator() as $day) {
-    print $day . "|";
+    $print .= $day . "|";
 }
+
+echo nl2br($print);
