@@ -16,7 +16,7 @@ spl_autoload_register(function ($class_name) {
 $month = new Month("March", 2018);
 //$month = new Month(4, 2018);
 //$month = new Month(04, 2018);
-//$month = new Month("April", 2018);
+//$month = new Month("Mar", 2018);
 
 print $month->getDay(29) . "<br><br>";
 
