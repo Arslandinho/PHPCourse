@@ -5,16 +5,12 @@
   "license": "proprietary",
   "authors": [
     {
-      "name": "author's name",
-      "email": "email@example.com"
+      "name": "Arslan Tachmuradov",
+      "email": "arslan.tachmuradov@gmail.com"
     }
   ],
   "require": {
-    "squizlabs/php_codesniffer": "3.*"
-  },
-  "autoload": {
-    "psr-4": {
-      "Logger\\": "src/Logger"
-    }
+    "squizlabs/php_codesniffer": "3.*",
+    "psr/log": "1.0.2"
   }
 }

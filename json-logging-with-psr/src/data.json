@@ -1,0 +1,37 @@
+[
+  {
+    "dataType": "blabla",
+    "time": "20.05.18 19:16:17",
+    "content": "blablabla"
+  },
+  {
+    "dataType": "info",
+    "time": "20.05.18 19:16:17",
+    "content": "Read this"
+  },
+  {
+    "dataType": "warning",
+    "time": "20.05.18 19:16:17",
+    "content": "Don't read this"
+  },
+  {
+    "dataType": "error",
+    "time": "20.05.18 19:16:17",
+    "content": "Don't read this"
+  },
+  {
+    "dataType": "error",
+    "time": "20.05.18 19:16:17",
+    "content": "Error code: 202"
+  },
+  {
+    "dataType": "critical",
+    "time": "20.05.18 19:16:17",
+    "content": "You're gonna die in 1, 2, 3..."
+  },
+  {
+    "dataType": "alert",
+    "time": "20.05.18 19:16:17",
+    "content": "If you read this, you won 1 free ticket!"
+  }
+]
