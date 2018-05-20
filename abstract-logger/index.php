@@ -6,53 +6,48 @@
  * Time: 20:04
  */
 
-//mb_http_output('UTF-8');
-//
-//mb_internal_encoding('UTF-8');
-//mb_http_output('UTF-8');
-//mb_http_input('UTF-8');
-//mb_language('uni');
-//mb_regex_encoding('UTF-8');
-//ob_start('mb_output_handler');
-
 require_once "AbstractLogger.php";
 require_once "FileLogger.php";
 require_once "BrowserLogger.php";
 
 require "index.html";
 
-//$consonant_ru =
-//    ["й", "ц", "к", "н", "г", "ш", "щ", "з", "х", "ф", "в", "п", "р", "л", "д", "ж", "ч", "с", "м", "т", "б",];
 $consonant_en =
     ["q", "w", "r", "t", "p", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m",];
 
 function contains_consonant($input) : bool {
 
     global $consonant_en;
-    //global $consonant_ru;
 
     $input_as_array = str_split($input);
 
     foreach ($input_as_array as $item) {
-        if (in_array($item, $consonant_en)
-            //|| in_array($item, $consonant_ru)
-        ) {
-            return true;
-        };
+        if (in_array($item, $consonant_en)) return true;
     }
 
     return false;
 }
 
-function print_contains($input) : string {
+function print_contains($input) {
 
-    $contains = contains_consonant($input);
+    $result = [];
 
-    $out_1 = "Строка $input ";
-    $out_2 = "содержит заглавные буквы";
+    for ($i = 0; $i < count($input); $i++) {
+        $contains = contains_consonant($input[$i]);
 
-    if ($contains) return $out_1 . $out_2;
-    else return $out_1 . "не " . $out_2;
+        $item = trim($input[$i]);
+
+        $out_1 = "Строка $item ";
+        $out_2 = "содержит заглавные буквы";
+
+        $out_string = "$out_1";
+
+        if ($contains) $out_string .= $out_2;
+        else $out_string .= "не " . $out_2;
+        array_push($result, $out_string);
+    }
+
+    return $result;
 }
 
 function getLogger($type, $filename=null, $feature=null) : AbstractLogger {
@@ -61,9 +56,9 @@ function getLogger($type, $filename=null, $feature=null) : AbstractLogger {
 }
 
 
-
 if (isset($_POST["text"]) && isset($_POST["logger-type"])) {
     $input = trim($_POST["text"]);
+    $input = explode("\n", $input);
     $logger_type = $_POST["logger-type"];
     $filename = null;
     $feature = null;
@@ -76,18 +71,10 @@ if (isset($_POST["text"]) && isset($_POST["logger-type"])) {
         $filename = $_POST["filename"];
     }
 
-    $input = print_contains($input);
-
     $logger = getLogger($logger_type, $filename, $feature);
 
     if ($logger != null) {
-        $logger->addToLog($input);
-
-        if (isset($_POST["add_text"])) {
-            $input = trim($_POST["add_text"]);
-            $input = print_contains($input);
-            $logger->addToLog($input);
-        }
+        $logger->addToLog(print_contains($input));
     } else {
         throw new Error("Ошибка. Неизвестный тип логгера");
     }

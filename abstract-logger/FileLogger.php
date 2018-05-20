@@ -20,6 +20,6 @@ class FileLogger extends AbstractLogger {
 
     public function print_output() {
 
-        fwrite($this->file, $this->to_print  . "\n");
+        fwrite($this->file, $this->to_print . "\n");
     }
 }

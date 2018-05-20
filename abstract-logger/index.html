@@ -42,15 +42,7 @@
 <body>
 
 <?php if (isset($_REQUEST['go'])):?>
-    <div>
-        <form action="<?=$_SERVER['REQUEST_URI']?>" method="POST">
-            <p><b>Enter your text here:</b></p>
-            <textarea name="add_text" id="add_text" cols="63" rows="7"></textarea>
-            <br>
 
-            <input id="add_btn" type="submit" name="go" value="Log"><br>
-        </form>
-    </div>
 <?php else:?>
 
     <div id="content">
@@ -86,30 +78,10 @@
 
             <br>
 
-            <!--<div v-if="file-checked">-->
-                <!--<input type="text" placeholder="Enter a name of the file here" name="filename">-->
-            <!--</div>-->
-            <!--<div v-else-if="browser-checked">-->
-                <!--<input type="radio" name="param" value="DT">Date and time-->
-                <!--<input type="radio" name="param" value="T">Time only-->
-                <!--<input type="radio" name="param" value="NONE">None-->
-            <!--</div>-->
-            <!--<br>-->
-
             <input id="btn" type="submit" name="go" value="Log"><br>
         </form>
     </div>
 <?php endif?>
-
-<script src=https://cdn.jsdelivr.net/npm/vue></script>
-
-<script>
-    new Vue({
-       data: {
-           "picked": false,
-       }
-    });
-</script>
 
 </body>
 </html>

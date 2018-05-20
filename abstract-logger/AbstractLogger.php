@@ -13,7 +13,14 @@ abstract class AbstractLogger {
     public abstract function print_output();
 
     public function addToLog($input) {
-        $this->to_print .= $input;
-        $this->print_output();
+
+        for ($i = 0; $i < count($input); $i++) {
+            $item = explode("\n", $input[$i]);
+
+            foreach ($item as $item_print) {
+                $this->to_print = trim($item_print);
+                $this->print_output();
+            }
+        }
     }
 }
